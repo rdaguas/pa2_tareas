@@ -149,6 +149,36 @@ public class FutbolistaRepositoryImpl implements FutbolistaRepository {
 		TypedQuery<Futbolista> myQueryFinal = this.entityManager.createQuery(myCriteriaQuery);
 
 		return myQueryFinal.getSingleResult();
+		
+	}
+	@Override
+	public int eliminarPorNombre(String nombre) {
+
+		// DELETE FROM futbolista WHERE estu_nombre = ?
+		// DELETE FROM Futbolista e WHERE e.nombre = :datoNombre
+
+		//
+		Query myQuery = this.entityManager.createQuery("DELETE FROM Futbolista f WHERE f.nombre = :datoNombre");
+		myQuery.setParameter("datoNombre", nombre);
+
+		return myQuery.executeUpdate();
+
+	}
+
+	@Override
+	public int actualizarPorApellido(String nombre,String apellido) {
+
+		// SQL
+		// UPDATE futbolista SET estu_nombre =? WHERE estu_apellido=?
+		//JPQL
+		///UPDATE Futbolista e SET e.nombre =:datoNombre WHERE e.apellido =:datoApellido
+
+		//
+		Query myQuery = this.entityManager.createQuery("UPDATE Futbolista f SET f.nombre =:datoNombre WHERE f.apellido =:datoApellido");
+		myQuery.setParameter("datoNombre", nombre);
+		myQuery.setParameter("datoApellido", apellido);
+		return myQuery.executeUpdate();
+
 	}
 
 }

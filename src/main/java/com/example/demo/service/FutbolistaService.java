@@ -18,12 +18,14 @@ public interface FutbolistaService {
 	
 	public Futbolista buscarPorApellidoyNombreTyped(String apellido, String nombre);	
 	//result List
-	public List<Futbolista> buscarPorApellidoTyped(String apellido);
-	
+	public List<Futbolista> buscarPorApellidoTyped(String apellido);	
 	
 	public Futbolista buscarPorPrecioFutbolistaCriteriaAPIQuery(BigDecimal precioFutbolista);
 	
 	public Futbolista buscarFutbolistaDinamico(String nombre, String apellido, BigDecimal precioFutbolista);
+	
+	public int eliminarPorNombre(String nombre);
+	public int actualizarPorApellido(String nombre, String apellido);
 	
 
 }

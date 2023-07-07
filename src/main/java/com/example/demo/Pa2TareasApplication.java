@@ -33,7 +33,7 @@ public class Pa2TareasApplication implements CommandLineRunner {
 		futb2.setApellido("Valencia");
 		futb2.setPrecioFutbolista(new BigDecimal(3000));
 
-		// this.futbolistaService.guardar(futb);
+		this.futbolistaService.guardar(futb);
 		// this.futbolistaService.guardar(futb2);
 
 		// this.futbolistaService.guardar(futb);
@@ -59,14 +59,20 @@ public class Pa2TareasApplication implements CommandLineRunner {
 //		List<Futbolista> futTy = this.futbolistaService.buscarPorApellidoTyped("Valencia");
 //		System.out.println(futTy);
 		
-		System.out.println("************************************ CRITERIA API QUERY ************************************");
-		System.out.println("Futbolista por precioFutbolista, CriteriaApiQuery: "+ this.futbolistaService.buscarPorPrecioFutbolistaCriteriaAPIQuery(new BigDecimal(5000)));
+//		System.out.println("************************************ CRITERIA API QUERY ************************************");
+//		System.out.println("Futbolista por precioFutbolista, CriteriaApiQuery: "+ this.futbolistaService.buscarPorPrecioFutbolistaCriteriaAPIQuery(new BigDecimal(5000)));
+//
+//		System.out.println(
+//				"************************************ DINAMICO CRITERIA API QUERY ************************************");
+//		System.out.println("Futbolista por precioFutbolista, DINAMICO CriteriaApiQuery: "
+//				+ this.futbolistaService.buscarFutbolistaDinamico("Antonio", "Valencia", new BigDecimal(5000)));
 
-		System.out.println(
-				"************************************ DINAMICO CRITERIA API QUERY ************************************");
-		System.out.println("Futbolista por precioFutbolista, DINAMICO CriteriaApiQuery: "
-				+ this.futbolistaService.buscarFutbolistaDinamico("Antonio", "Valencia", new BigDecimal(5000)));
-
+		System.out.println("************************************ DELETE CON JPQL ************************************");
+		System.out.println("Se elimino: " + this.futbolistaService.eliminarPorNombre("Sergio"));
+		
+		
+		System.out.println("************************************ UPDATE CON JPQL ************************************");
+		System.out.println("Se actualizo: " + this.futbolistaService.actualizarPorApellido("Roberto", "Ronaldo"));
 
 	}
 

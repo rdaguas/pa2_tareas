@@ -82,4 +82,16 @@ public class FutbolistaServiceImpl implements FutbolistaService{
 		return this.futbolistaRepository.seleccionarFutbolistaDinamico(nombre, apellido, precioFutbolista);
 	}
 
+	@Override
+	public int eliminarPorNombre(String nombre) {
+		// TODO Auto-generated method stub
+		return this.futbolistaRepository.eliminarPorNombre(nombre);
+	}
+
+	@Override
+	public int actualizarPorApellido(String nombre, String apellido) {
+		// TODO Auto-generated method stub
+		return this.futbolistaRepository.actualizarPorApellido(nombre, apellido);
+	}
+
 }

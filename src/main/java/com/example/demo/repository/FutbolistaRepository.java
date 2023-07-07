@@ -25,4 +25,6 @@ public interface FutbolistaRepository {
 	
 	public Futbolista seleccionarFutbolistaDinamico(String nombre, String apellido, BigDecimal precioFutbolista);
 
+	public int eliminarPorNombre(String nombre);
+	public int actualizarPorApellido(String nombre, String apellido);
 }
