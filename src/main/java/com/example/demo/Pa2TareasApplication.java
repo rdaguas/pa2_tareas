@@ -33,10 +33,10 @@ public class Pa2TareasApplication implements CommandLineRunner {
 		futb2.setApellido("Valencia");
 		futb2.setPrecioFutbolista(new BigDecimal(3000));
 
-		//this.futbolistaService.guardar(futb);
-		//this.futbolistaService.guardar(futb2);
-		
-		//this.futbolistaService.guardar(futb);
+		// this.futbolistaService.guardar(futb);
+		// this.futbolistaService.guardar(futb2);
+
+		// this.futbolistaService.guardar(futb);
 		// this.futbolistaService.guardar(futb2);
 		// Llamo por Apellido
 //		// Query con Single Result
@@ -58,8 +58,14 @@ public class Pa2TareasApplication implements CommandLineRunner {
 //		System.out.println("------------------- TYPEDQUERY  RESULT LIST - POR APELLIDO -------------------");
 //		List<Futbolista> futTy = this.futbolistaService.buscarPorApellidoTyped("Valencia");
 //		System.out.println(futTy);
+		
 		System.out.println("************************************ CRITERIA API QUERY ************************************");
 		System.out.println("Futbolista por precioFutbolista, CriteriaApiQuery: "+ this.futbolistaService.buscarPorPrecioFutbolistaCriteriaAPIQuery(new BigDecimal(5000)));
+
+		System.out.println(
+				"************************************ DINAMICO CRITERIA API QUERY ************************************");
+		System.out.println("Futbolista por precioFutbolista, DINAMICO CriteriaApiQuery: "
+				+ this.futbolistaService.buscarFutbolistaDinamico("Antonio", "Valencia", new BigDecimal(5000)));
 
 
 	}

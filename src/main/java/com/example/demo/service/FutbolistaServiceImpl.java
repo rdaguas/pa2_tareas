@@ -76,4 +76,10 @@ public class FutbolistaServiceImpl implements FutbolistaService{
 		return this.futbolistaRepository.seleccionarPorPrecioFutbolistaCriteriaAPIQuery(precioFutbolista);
 	}
 
+	@Override
+	public Futbolista buscarFutbolistaDinamico(String nombre, String apellido, BigDecimal precioFutbolista) {
+		// TODO Auto-generated method stub
+		return this.futbolistaRepository.seleccionarFutbolistaDinamico(nombre, apellido, precioFutbolista);
+	}
+
 }

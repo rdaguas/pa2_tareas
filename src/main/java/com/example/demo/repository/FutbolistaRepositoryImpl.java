@@ -114,6 +114,41 @@ public class FutbolistaRepositoryImpl implements FutbolistaRepository {
 		// 5. Laejecución del Query la realizamos con TypedQuery
 		TypedQuery<Futbolista> myQueryFinal = this.entityManager.createQuery(myCriteriaQuery);
 		return myQueryFinal.getSingleResult();
+	}
+
+	@Override
+	public Futbolista seleccionarFutbolistaDinamico(String nombre, String apellido, BigDecimal precioFutbolista) {
+		// 0. declaro un constructor
+		CriteriaBuilder myBuilder = this.entityManager.getCriteriaBuilder();
+		// 1. Tipo de retorno que tiene mi Query
+		CriteriaQuery<Futbolista> myCriteriaQuery = myBuilder.createQuery(Futbolista.class);
+		// 2. Empezamos a crear el SQL
+		// 2.1 Definimos el from (Root)
+		Root<Futbolista> myTablaFrom = myCriteriaQuery.from(Futbolista.class); 
+		// 3. construccion de las condiciones
+		// Si el peso > a 100 , e.nombre = AND e.apellido=
+		// si el peso <= a 100, e.nombre = OR e.apellido?
+		// AND y OR son predicados distintos
+		// e.nombre=?
+		Predicate pNombre = myBuilder.equal(myTablaFrom.get("nombre"), nombre);
+
+		// e.apellido=?
+		Predicate pApellido = myBuilder.equal(myTablaFrom.get("apellido"), apellido);
+
+		Predicate predicadoFinal = null;
+		if (precioFutbolista.compareTo(new BigDecimal(2000)) <= 0) {
+			predicadoFinal = myBuilder.or(pNombre, pApellido);
+		} else {
+			predicadoFinal = myBuilder.and(pNombre, pApellido);
 		}
+
+		// 4. Armamos mi SQL final
+		myCriteriaQuery.select(myTablaFrom).where(predicadoFinal);
+
+		// 5. Laejecución del Query la realizamos con TypedQuery
+		TypedQuery<Futbolista> myQueryFinal = this.entityManager.createQuery(myCriteriaQuery);
+
+		return myQueryFinal.getSingleResult();
+	}
 
 }

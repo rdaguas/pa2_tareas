@@ -23,5 +23,7 @@ public interface FutbolistaService {
 	
 	public Futbolista buscarPorPrecioFutbolistaCriteriaAPIQuery(BigDecimal precioFutbolista);
 	
+	public Futbolista buscarFutbolistaDinamico(String nombre, String apellido, BigDecimal precioFutbolista);
+	
 
 }
