@@ -33,11 +33,19 @@ public class Pa2TareasApplication implements CommandLineRunner {
 		futb2.setApellido("Valencia");
 		futb2.setPrecioFutbolista(new BigDecimal(3000));
 
-		this.futbolistaService.guardar(futb);
+		//this.futbolistaService.guardar(futb);
 		// this.futbolistaService.guardar(futb2);
 
 		// this.futbolistaService.guardar(futb);
 		// this.futbolistaService.guardar(futb2);
+		
+		//REPORTE GENERADO DTO
+		
+		this.futbolistaService.buscarReporteTodos().forEach(System.out::println);
+		
+		
+		
+		
 		// Llamo por Apellido
 //		// Query con Single Result
 //		System.out.println("-------------------QUERY SINGLE RESULT - POR APELLIDO -------------------");
@@ -65,14 +73,14 @@ public class Pa2TareasApplication implements CommandLineRunner {
 //		System.out.println(
 //				"************************************ DINAMICO CRITERIA API QUERY ************************************");
 //		System.out.println("Futbolista por precioFutbolista, DINAMICO CriteriaApiQuery: "
-//				+ this.futbolistaService.buscarFutbolistaDinamico("Antonio", "Valencia", new BigDecimal(5000)));
+//				+ this.futbolistaService.buscarFutbolistaDinamico("Leo", "Messi", new BigDecimal(7000)));
 
-		System.out.println("************************************ DELETE CON JPQL ************************************");
-		System.out.println("Se elimino: " + this.futbolistaService.eliminarPorNombre("Sergio"));
+		//System.out.println("************************************ DELETE CON JPQL ************************************");
+		//System.out.println("Se elimino: " + this.futbolistaService.eliminarPorNombre("Sergio"));
 		
 		
-		System.out.println("************************************ UPDATE CON JPQL ************************************");
-		System.out.println("Se actualizo: " + this.futbolistaService.actualizarPorApellido("Roberto", "Ronaldo"));
+		//System.out.println("************************************ UPDATE CON JPQL ************************************");
+		//System.out.println("Se actualizo: " + this.futbolistaService.actualizarPorApellido("Roberto", "Ronaldo"));
 
 	}
 

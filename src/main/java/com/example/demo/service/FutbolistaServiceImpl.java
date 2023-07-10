@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.demo.repository.FutbolistaRepository;
 import com.example.demo.repository.modelo.Futbolista;
+import com.example.demo.repository.modelo.dto.FutbolistaDTO;
 
 @Service
 public class FutbolistaServiceImpl implements FutbolistaService{
@@ -92,6 +93,12 @@ public class FutbolistaServiceImpl implements FutbolistaService{
 	public int actualizarPorApellido(String nombre, String apellido) {
 		// TODO Auto-generated method stub
 		return this.futbolistaRepository.actualizarPorApellido(nombre, apellido);
+	}
+
+	@Override
+	public List<FutbolistaDTO> buscarReporteTodos() {
+		// TODO Auto-generated method stub
+		return this.futbolistaRepository.reporteTodos();
 	}
 
 }

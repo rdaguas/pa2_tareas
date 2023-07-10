@@ -5,6 +5,8 @@ import java.util.List;
 
 import org.springframework.stereotype.Repository;
 import com.example.demo.repository.modelo.Futbolista;
+import com.example.demo.repository.modelo.dto.FutbolistaDTO;
+
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.Query;
@@ -124,7 +126,7 @@ public class FutbolistaRepositoryImpl implements FutbolistaRepository {
 		CriteriaQuery<Futbolista> myCriteriaQuery = myBuilder.createQuery(Futbolista.class);
 		// 2. Empezamos a crear el SQL
 		// 2.1 Definimos el from (Root)
-		Root<Futbolista> myTablaFrom = myCriteriaQuery.from(Futbolista.class); 
+		Root<Futbolista> myTablaFrom = myCriteriaQuery.from(Futbolista.class);
 		// 3. construccion de las condiciones
 		// Si el peso > a 100 , e.nombre = AND e.apellido=
 		// si el peso <= a 100, e.nombre = OR e.apellido?
@@ -148,9 +150,10 @@ public class FutbolistaRepositoryImpl implements FutbolistaRepository {
 		// 5. Laejecución del Query la realizamos con TypedQuery
 		TypedQuery<Futbolista> myQueryFinal = this.entityManager.createQuery(myCriteriaQuery);
 
-		return myQueryFinal.getSingleResult();
-		
+		return (Futbolista) myQueryFinal.getSingleResult();
+
 	}
+
 	@Override
 	public int eliminarPorNombre(String nombre) {
 
@@ -166,19 +169,30 @@ public class FutbolistaRepositoryImpl implements FutbolistaRepository {
 	}
 
 	@Override
-	public int actualizarPorApellido(String nombre,String apellido) {
+	public int actualizarPorApellido(String nombre, String apellido) {
 
 		// SQL
 		// UPDATE futbolista SET estu_nombre =? WHERE estu_apellido=?
-		//JPQL
-		///UPDATE Futbolista e SET e.nombre =:datoNombre WHERE e.apellido =:datoApellido
+		// JPQL
+		/// UPDATE Futbolista e SET e.nombre =:datoNombre WHERE e.apellido
+		// =:datoApellido
 
 		//
-		Query myQuery = this.entityManager.createQuery("UPDATE Futbolista f SET f.nombre =:datoNombre WHERE f.apellido =:datoApellido");
+		Query myQuery = this.entityManager
+				.createQuery("UPDATE Futbolista f SET f.nombre =:datoNombre WHERE f.apellido =:datoApellido");
 		myQuery.setParameter("datoNombre", nombre);
 		myQuery.setParameter("datoApellido", apellido);
 		return myQuery.executeUpdate();
 
 	}
 
+	@Override
+	public List<FutbolistaDTO> reporteTodos() {
+		// el jpql no es entidad EstudianteDTO, por lo tanto se debe pober "SELECT NEW
+		// EstudianteDTO{e.nombre, e.apellido} FROM Estudiante e"
+		TypedQuery<FutbolistaDTO> myQuery = this.entityManager.createQuery(
+				"SELECT NEW com.example.demo.repository.modelo.dto.FutbolistaDTO(f.nombre, f.precioFutbolista) FROM Futbolista f",
+				FutbolistaDTO.class);
+		return myQuery.getResultList();
+	}
 }

@@ -3,6 +3,7 @@ package com.example.demo.repository;
 import java.math.BigDecimal;
 import java.util.List;
 import com.example.demo.repository.modelo.Futbolista;
+import com.example.demo.repository.modelo.dto.FutbolistaDTO;
 
 public interface FutbolistaRepository {
 	public void insertar(Futbolista futbolista);
@@ -27,4 +28,6 @@ public interface FutbolistaRepository {
 
 	public int eliminarPorNombre(String nombre);
 	public int actualizarPorApellido(String nombre, String apellido);
+	
+	public List<FutbolistaDTO> reporteTodos();
 }
